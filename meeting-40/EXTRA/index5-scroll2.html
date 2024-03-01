@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;padding: 0;box-sizing: border-box;
+        }
+        body{
+            overflow: hidden;
+        }
+        main{
+            width: 100%;
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            >section{
+                >div{
+                    height: 130vh;
+                    border: 10px solid black;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    >img{
+                        width: 30%;
+                        transition: .4s;
+                    }
+                }
+            }
+        }
+
+        .tr{
+            transform: translateX(2000px);
+        }
+        .tl{
+            transform: translateX(-2000px);
+        }
+        .f{
+            transform: rotate(360deg);
+            opacity: 0;
+        }
+        .lt{
+            transform: translate(-2000px, -500px);
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <div>
+                <img src="img/12.jpg" alt="">
+            </div>
+            <div>
+                <img data-parsa="tr" class="para" src="img/12.jpg" alt="">
+            </div>
+            <div>
+                <img data-parsa="tl" class="pic" src="img/12.jpg" alt="">
+                <img data-parsa="tr" class="pic" src="img/12.jpg" alt="">
+            </div>
+            <div>
+                <img data-parsa="f" class="" src="img/12.jpg" alt="">
+            </div>
+            <div>
+                <img data-parsa="lt" class="" src="img/12.jpg" alt="">
+            </div>
+
+        </section>
+    </main>
+    <script>
+        const img = document.querySelectorAll('img');
+        img.forEach((val)=>{
+            if(
+                (val.getAttribute('data-parsa')) != ''
+            ){
+                val.setAttribute('data-h', val.offsetTop)
+                val.classList.add(val.getAttribute('data-parsa'))
+
+            }
+        })
+
+        document.getElementsByTagName('main')[0].addEventListener('scroll', (e)=>{
+            let st = e.target.scrollTop
+            img.forEach((val)=>{
+                let _h = val.getAttribute('data-h')
+                if(
+                    (st+400) > _h
+                ){
+                    val.classList.remove(val.getAttribute('data-parsa'))
+                }else{
+                    val.classList.add(val.getAttribute('data-parsa'))
+                }
+            })
+        })
+    </script>
+</body>
+</html>

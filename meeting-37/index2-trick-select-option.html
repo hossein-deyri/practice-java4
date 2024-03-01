@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select name="" id="code"></select>
+    <script>
+        const _code = [
+            {
+                code: '+98',
+                icon : '🌹'
+            },
+            {
+                code : '+97',
+                icon : '🥪'
+            },
+            {
+                code : '+95',
+                icon : '🥇'
+            },
+            {
+                code : '+1',
+                icon : '🕷️'
+            },
+            {
+                code : '+7',
+                icon : '😥'
+            },
+        ]
+        _code.forEach((val)=>{
+            document.getElementById('code').innerHTML+=`
+                <option>
+                    <span>${val.icon}</span>    
+                    <span>${val.code}</span>    
+                </option>
+            `
+        })
+    </script>
+</body>
+</html>

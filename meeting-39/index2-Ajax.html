@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="para()">click to load</button>
+    <p id="inja"></p>
+    <script>
+        let inja = document.getElementById('inja')
+        const para = () =>{
+            const xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                console.log(xhr);
+                inja.innerHTML = xhr.responseText + " - " + xhr.responseURL
+            }
+            xhr.open('GET', 'test2.txt')
+            xhr.send()
+        }
+    </script>
+</body>
+</html>

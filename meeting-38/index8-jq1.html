@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery/jq.js"></script>
+</head>
+<body>
+
+    <div class="box">
+        <button>click me</button>
+        <h1>parsa</h1>
+        <input type="text" id="demo">
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('button').click(function(){
+                // alert('advg')
+                $('h1').slideToggle(500)
+                $(this).next().text('arsam')
+                let temp = $('#demo').val()
+                // alert(temp)
+                $(this).parent().css({
+                    'border': '2px solid black',
+                    'background' : 'yellowgreen'
+                })
+                $(this).attr('title', 'parsa')
+                alert($(this).attr('title'))
+            })
+        })
+        // $(function(){
+
+        // })
+    </script>
+</body>
+</html>

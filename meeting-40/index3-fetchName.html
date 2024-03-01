@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="name">
+    <button onclick="getName()">click</button>
+    <h1 id="demo"></h1>
+    <script>
+
+
+
+
+        function getName(){
+            let myName = document.getElementById('name').value
+            _data(myName)
+        }
+
+        async function _data(myName){
+            let x = await fetch('https://api.nationalize.io/?name='+myName)
+            let sum = await x.json()
+            await console.log(sum);
+            // debugger
+            document.getElementById("demo").innerHTML=''
+            sum.country.map((val)=>{
+                document.getElementById("demo").innerHTML += val.country_id + '<hr>'
+            })
+
+            
+        }
+
+    </script>
+</body>
+</html>

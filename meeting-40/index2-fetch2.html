@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload="_price()">
+    <script>
+        setInterval(_price, 30000)
+        function _price() {
+            const url = 'https://api.coindesk.com/v1/bpi/currentprice.json'
+            fetch(url)
+                .then(res => res.json())
+                .then(val => {
+                    document.write('<h2>' + val.time.updated + '</h2>')
+                    document.write('<h2>' + val.disclaimer + '</h2>')
+                    document.write('<h2>' + val.bpi.USD.code + '</h2>')
+                    document.write('<h2>' + val.bpi.USD.symbol + '</h2>')
+                    document.write('<h2>' + val.bpi.USD.rate + '</h2>')
+
+                    document.write('<h2>' + val.bpi.GBP.code + '</h2>')
+                    document.write('<h2>' + val.bpi.GBP.symbol + '</h2>')
+                    document.write('<h2>' + val.bpi.GBP.rate + '</h2>')
+                })
+        }
+    </script>
+</body>
+
+</html>

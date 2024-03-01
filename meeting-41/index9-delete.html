@@ -1,0 +1,15 @@
+<script>
+    fetch('https://652a41a755b137ddc83f651d.mockapi.io/api/deyri/users/2', {
+        method: 'DELETE',
+    }).then(res => {
+        if (res.ok) {
+            return res.json();
+        }
+        // handle error
+    }).then(task => {
+        alert('delete shodi rafti peye karet!')
+        // Do something with deleted task
+    }).catch(error => {
+        // handle error
+    })
+</script>

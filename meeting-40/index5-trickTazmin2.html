@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        #list {
+            width: 60%;
+            padding: 20px;
+            border: 2px solid black;
+            margin: 50px auto;
+        }
+
+        .art {
+            width: 100%;
+            height: 200px;
+            border-bottom: 1px solid rgb(59, 59, 59);
+            padding: 10px;
+            display: flex;
+
+            >figure {
+                width: 40%;
+
+                >img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            >div {
+                width: 60%;
+                padding-left: 20px;
+            }
+        }
+
+        button {
+            width: 100%;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body onload="getData()">
+    <h1>tazmine ezdevaj</h1>
+    <div id="list"></div>
+    <button onclick="getData()">load more</button>
+    <script>
+        let num = 10
+        function getData() {
+            fetch('https://randomuser.me/api/?results=' + num)
+                .then(res => res.json())
+                .then(val => {
+                    val.results.map((item) => {
+                        let art = document.createElement('article')
+                        art.classList.add('art')
+                        art.innerHTML = `
+                            <figure><img src='${item.picture.large}' /></figure>
+                            <div>
+                                <h3>${item.name.first} ${item.name.last}</h3>
+                                <h3>${item.location.country}</h3>
+                                <h3>${item.email}</h3>
+                            </div>
+                        `
+                        document.getElementById('list').appendChild(art)
+                    })
+
+                })
+        }
+    </script>
+</body>
+
+</html>

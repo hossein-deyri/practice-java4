@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const person = {
+            name: 'tina',
+            lname: 'tinaee',
+            age: 156,
+            work: 'teacher',
+            set myAge(x) {
+                this.age = x
+            }
+        }
+        person.myAge = 20
+        console.log(person.age);
+
+        // ************
+        var person1 = {
+            name: 'ali',
+            lname: 'aliani',
+            age: 30
+        }
+        console.log(Object.keys(person1))
+        console.log(Object.values(person1))
+    </script>
+</body>
+
+</html>

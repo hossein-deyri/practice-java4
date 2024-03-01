@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Mooli&family=Pixelify+Sans:wght@700&family=Rubik:wght@300&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Pixelify Sans', cursive;
+        }
+
+        #demo {
+            width: fit-content;
+            animation: para linear 0.4s infinite alternate;
+        }
+
+        @keyframes para {
+            from {
+                border-right: 1px solid rgba(0, 0, 0, 0);
+            }
+
+            to {
+                border-right: 1px solid black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>write text</h1>
+    <input type="text" id="btn">
+    <button>start</button>
+    <h2 id="demo" style="font-size: 50px;"></h2>
+</body>
+<script>
+    let x = ''
+    let y = ''
+    const val = document.getElementById('btn')
+    const btn = document.querySelectorAll('button')
+    let i = 1
+    btn[0].addEventListener('click', () => {
+
+        let temp = val.value
+
+        x = setInterval(() => {
+            if (i <= temp.length) {
+                document.getElementById('demo').innerText = temp.slice(0, i)
+                console.log(temp.slice(0, i));
+                i++
+            } else {
+                clearInterval(x)
+                y = setInterval(_del, 400)
+            }
+        }, 400);
+
+
+        function _del() {
+            if (i >= 0) {
+                document.getElementById('demo').innerText = temp.slice(0, i)
+                i--
+            }else{
+                clearInterval(y)
+                i=0
+                btn[0].click()
+            }
+        }
+
+
+
+    })
+
+    btn[1].addEventListener('click', () => {
+        clearInterval(x)
+    })
+
+</script>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="" alt="">
+</body>
+<script>
+    const myImage = document.querySelector('img');
+    const p = fetch('https://trainingsitedesign.ir/wp-content/uploads/2022/03/60b55880-bd67-11ea-9b27-34ffd8496e21.png');
+    p.then(response => response.blob())
+        .then(function (myBlob) {
+            let fileURL = URL.createObjectURL(myBlob);
+            myImage.src = fileURL;
+        });  
+</script>
+
+</html>

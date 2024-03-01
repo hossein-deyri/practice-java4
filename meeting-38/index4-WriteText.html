@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Mooli&family=Pixelify+Sans:wght@700&family=Rubik:wght@300&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Pixelify Sans', cursive;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>write text</h1>
+    <input type="text" id="btn">
+    <button>start</button>
+    <button>stop</button>
+    <h2 id="demo" style="font-size: 50px;"></h2>
+</body>
+<script>
+    const val = document.getElementById('btn')
+    const btn = document.querySelectorAll('button')
+    btn[0].addEventListener('click', () => {
+        let i = 1
+        let temp = val.value
+        let x = setInterval(() => {
+            if (i <= temp.length) {
+                document.getElementById('demo').innerText = temp.slice(0, i)
+                console.log(temp.slice(0, i));
+                i++
+            }else{
+                clearInterval(x)
+            }
+        }, 400);
+    })
+
+</script>
+
+</html>

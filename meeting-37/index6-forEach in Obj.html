@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const person = {
+            name : 'ali',
+            lname : 'aliani',
+            age : 14,
+            work : prompt('are u ?')
+
+        }
+        console.log(person.name);
+        console.log(person['name']);
+
+        const moein = []
+        for(let x in person){
+            document.write('<h2> '+x+' : '+person[x]+'</h2>')
+            moein.push(x)
+        }
+        console.log(moein);
+    </script>
+</body>
+</html>

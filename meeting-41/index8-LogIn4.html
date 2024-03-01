@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="username" placeholder="username">
+    <input type="password" id="password" placeholder="password">
+    <button onclick="para()">log In</button>
+
+    <div id="list"></div>
+    <script>
+        function para() {
+            let _name = document.getElementById('username').value
+            let _pass = document.getElementById('password').value
+
+            fetch('https://6548b25edd8ebcd4ab236afb.mockapi.io/api/hossein-deyri/users', {
+                method: 'GET',
+                headers: { 'content-type': 'application/json' },
+            }).then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // handle error
+            }).then(val => {
+
+                for (let i = 0; i < val.length; i++) {
+                    if (
+                        (val[i].username == _name) && (val[i].password == _pass)
+                    ){
+                        console.log("found "+" name: "+_name+" pass: "+_pass);
+                        document.getElementById('list').innerHTML=`
+                        <h2>
+                            ${val[i].id} -     
+                            ${val[i].username} -     
+                            ${val[i].email}   -  
+                            ${val[i].password} -   
+                        </h2>
+                    `
+                    break;
+                    }else{
+                        document.getElementById('list').innerHTML='not found'
+                        console.log("Notfound "+" name: "+_name+" pass: "+_pass);
+                    }
+                }
+
+
+
+
+            }).catch(error => {
+                // handle error
+            })
+        }
+    </script>
+
+</body>
+
+</html>

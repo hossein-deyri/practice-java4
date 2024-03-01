@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+        <input id="email" type="text" placeholder="email">
+        <input id="fullName" type="text" placeholder="fullName">
+        <input id="pass" type="text" placeholder="password">
+        <button onclick="para1()">add user</button>
+    </div>
+    <script>
+        function para1() {
+            const sampleData = {
+                email: document.getElementById('email').value,
+                fullName: document.getElementById('fullName').value,
+                pass: document.getElementById('pass').value,
+            };
+            fetch('https://652a41a755b137ddc83f651d.mockapi.io/api/deyri/users', {
+                method: 'POST',
+                headers: { 'content-type': 'application/json' },
+                // Send your data in the request body as JSON
+                body: JSON.stringify(sampleData)
+            }).then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // handle error
+            }).then(task => {
+                // do something with the new task
+                alert('user added!')
+            }).catch(error => {
+                // handle error
+                alert('user not add to db!' + error.message)
+                console.log(error);
+            })
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const person = {
+            name : 'ali',
+            lname : 'aliani',
+            age : 50,
+            state :{
+                city : 'alian',
+                geoLoc : '6546645'
+            },
+            animals : [
+                ['cow', 4],
+                ['dogs', 5],
+                ['sheep', 20],
+                [{name:'para1'}]
+            ]
+        }
+        console.log(person.name);
+        console.log(person.lname);
+        console.log(person.state.city);
+        console.log(person.state.geoLoc);
+        console.log(person.animals[0][0] + " - " + person.animals[0][1]);
+        console.log(person.animals[3][0].name);
+    </script>
+</body>
+</html>

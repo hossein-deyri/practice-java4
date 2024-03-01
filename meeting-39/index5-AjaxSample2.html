@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        select {
+            width: 400px;
+            display: flex;
+            height: 50px;
+            font-size: 30px;
+        }
+
+        #city {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <select name="" id="state">
+        <option value="" disabled selected>choose city</option>
+        <option value="alborz">alborz</option>
+        <option value="tehran">tehran</option>
+        <option value="guilan">guilan</option>
+    </select>
+    <select name="" id="city"></select>
+    <script>
+        document.getElementById('state').addEventListener('change', () => {
+            let state = document.getElementById('state').value
+            document.getElementById('city').style.display = 'flex'
+            const xhr = new XMLHttpRequest()
+            xhr.onload = function () {
+                document.getElementById('city').innerHTML = xhr.response
+            }
+            xhr.open('GET', 'city/' + state + '.html', true)
+            //  if false bod be sorate synchronous anjam midad
+            xhr.send()
+
+        })
+    </script>
+</body>
+
+</html>

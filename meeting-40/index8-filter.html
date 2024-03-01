@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        #list {
+            width: 60%;
+            padding: 20px;
+            border: 2px solid black;
+            margin: 50px auto;
+        }
+
+        .art {
+            width: 100%;
+            height: 200px;
+            border-bottom: 1px solid rgb(59, 59, 59);
+            padding: 10px;
+            display: flex;
+            transition: 1s;
+
+            >figure {
+                width: 40%;
+
+                >img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            >div {
+                width: 60%;
+                padding-left: 20px;
+            }
+        }
+
+        button {
+            width: 100%;
+            height: 100px;
+        }
+
+        .filter {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            background-color: rgb(39, 38, 38);
+            top: 0;
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body onload="getData()">
+    <h1>tazmine ezdevaj</h1>
+    <div class="filter">
+        <label for="para1">man : </label><input value="male" id="para1" type="radio" name="yeksan">
+        <label for="para2">woman : </label><input value="female" id="para2" type="radio" name="yeksan">
+        <span id="reset" onclick="_reset()">resest </span>
+    </div>
+    <div id="list"></div>
+    <button onclick="getData()">load more</button>
+    <script>
+        let arts = ''
+        let num = 10
+        function getData() {
+            document.getElementById('list').innerHTML = ''
+            fetch('https://randomuser.me/api/?results=' + num)
+                .then(res => res.json())
+                .then(val => {
+                    val.results.map((item) => {
+                        let art = document.createElement('article')
+                        art.classList.add('art')
+                        art.setAttribute('data-status', item.gender)
+                        art.innerHTML = `
+                            <figure><img src='${item.picture.large}' /></figure>
+                            <div>
+                                <h3>${item.name.first} ${item.name.last}</h3>
+                                <h3>${item.location.country}</h3>
+                                <h3>${item.email}</h3>
+                                <h3>${item.gender}</h3>
+                            </div>
+                        `
+                        document.getElementById('list').appendChild(art)
+                    })
+
+
+
+
+                })
+
+            num += 10
+        }
+
+
+        // *********************
+        const inp = document.querySelectorAll('.filter input')
+        inp.forEach((val) => {
+            val.addEventListener('change', () => {
+
+                arts = document.querySelectorAll('#list>article')
+
+                if (val.checked) {
+                    arts.forEach((artTag) => {
+                        if (
+                            (artTag.getAttribute('data-status')) == val.value
+                        ) {
+                            artTag.style.opacity = '1'
+                        }
+                        else {
+                            artTag.style.opacity = '.2'
+
+                        }
+                    })
+                }
+            })
+        })
+
+
+
+
+
+
+        function _reset(){
+            arts.forEach((val)=>{
+                val.style.opacity='1'
+            })
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

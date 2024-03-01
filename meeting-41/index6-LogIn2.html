@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="email" placeholder="email">
+    <input type="password" id="pass" placeholder="pass">
+    <button onclick="para()">log In</button>
+
+    <div id="list"></div>
+    <script>
+        function para() {
+            let _email = document.getElementById('email').value
+            let _pass = document.getElementById('pass').value
+
+            fetch('https://652a41a755b137ddc83f651d.mockapi.io/api/deyri/users', {
+                method: 'GET',
+                headers: { 'content-type': 'application/json' },
+            }).then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // handle error
+            }).then(val => {
+                console.log(val);
+                val.map((items)=>{
+                    document.getElementById('list').innerHTML+=`
+                        <h2>
+                            ${items.id} -     
+                            ${items.email} -     
+                            ${items.pass}   -  
+                            ${items.fullName}   
+                        </h2>
+                    `
+                })
+            }).catch(error => {
+                // handle error
+            })
+        }
+    </script>
+
+</body>
+
+</html>

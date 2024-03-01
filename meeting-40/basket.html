@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basket</title>
+    <style>
+        *{
+            padding: 0;margin: 0;box-sizing: border-box;
+        }
+        .basket{
+            width: 300px;
+            padding: 10px;
+            border: 10px solid blue;
+            position: fixed;
+            left: 10px;
+            top: 10px;
+        }
+        .row{
+            width: 100%;
+            display: flex;
+            margin-top: 200px;
+        }
+        .row>div{
+            width: 25%;
+            border: 1px solid red;
+        }
+        .row>div>img{
+            width: 100%;
+        }
+        button{
+            padding: 10px 25px;
+            background-color: green;
+        }
+        ul>li{
+            height: 50px;
+            display: flex;
+            list-style-type: none;
+            overflow: hidden;
+        }
+        ul>li>*{
+            width: 33.33%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        ul>li>img{
+            object-fit: cover;
+        }
+        #final{
+            padding: 5px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <ul class="basket">
+        <button id="final">Final</button>
+    </ul>
+    <div class="row">
+        <div class="shortstory" data-code="product1">
+            <img src="img-basket/1.webp" alt="">
+            <h2>dress1</h2>
+            <button>Buy</button>
+        </div>
+        <div class="shortstory" data-code="product2">
+            <img src="img-basket/2.webp" alt="">
+            <h2>dress2</h2>
+            <button>Buy</button>
+        </div>
+        <div class="shortstory" data-code="product3">
+            <img src="img-basket/3.webp" alt="">
+            <h2>dress3</h2>
+            <button>Buy</button>
+        </div>
+        <div class="shortstory" data-code="product4">
+            <img src="img-basket/4.webp" alt="">
+            <h2>dress4</h2>
+            <button>Buy</button>
+        </div>
+    </div>
+</body>
+<script>
+    const myBasket = []
+    let _btn = document.querySelectorAll('.shortstory button')
+    _btn.forEach((item,index)=>{
+        item.addEventListener('click',function(){
+            // alert(item)
+            // alert(index)
+            let _code = item.parentElement.getAttribute('data-code')
+            
+            if((item.getAttribute('data-count')) == null){
+                // first click
+                let _li = document.createElement('li')
+                let _h2 = item.previousElementSibling.innerHTML
+                let _src = item.previousElementSibling.previousElementSibling.getAttribute('src')
+                _li.innerHTML = "<h2>"+_h2+"</h2><span>number:<b>1</b></span><img src='"+_src+"' />"
+                _li.setAttribute('id',_code)
+                document.getElementsByClassName('basket')[0].appendChild(_li)
+                item.setAttribute('data-count',1)
+            }else{
+                _numberPro = item.getAttribute('data-count')
+                _numberPro++
+                document.querySelector('li#'+_code+' b').innerHTML=_numberPro
+                item.setAttribute('data-count',_numberPro)
+            }
+        })
+    })
+    document.querySelector('#final').addEventListener('click',function(){
+        let liBasket = document.querySelectorAll('.basket li')
+        for(i=0;i<liBasket.length;i++){
+            let _child = liBasket[i].children
+            let _child2 = _child[1].children
+
+            const sampleProp = {
+                code: liBasket[i].getAttribute('id'),
+                title: _child[0].innerHTML,
+                count: _child2[0].innerHTML
+            }
+            // console.log(sampleProp);
+            myBasket.push(sampleProp)
+            console.log(myBasket);
+        }
+    })
+</script>
+</html>

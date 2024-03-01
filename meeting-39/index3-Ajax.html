@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="name">
+    <button onclick="para()">click me</button>
+    <h1 id="result"></h1>
+    <script>
+        let _name = document.getElementById('name')
+        const para = ()=>{
+            const xhr = new XMLHttpRequest()
+            xhr.onload = function(){
+                if(_name.value = ""){
+                    alert('pooor kon')
+                }else{
+                    document.getElementById('result').innerHTML = xhr.responseText
+                }
+            }
+            xhr.open('GET','reg.php?user='+_name.value)
+            xhr.send()
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    const controller = new AbortController();
+    const options = {
+        method: 'POST',
+        signal: controller.signal,
+        body: JSON.stringify({
+            firstName: 'David',
+            lastName: 'Pollock'
+        })
+    };
+    const promise = fetch('test.html', options);
+    const timeoutId = setTimeout(() => controller.abort(), 3000);
+    promise
+        .then(response => {
+            /* handle the response */
+})
+        .catch(error => console.error('timeout exceeded')); 
+</script>
+
+</html>
